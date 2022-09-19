@@ -123,10 +123,10 @@ titleClock.text( timify( toM(time) ) + ":" + timify( toS(time) ) );
 s = profile.elapsed * 60;
 secondaryClock.text( toH(s) + " hours " + (toM(s)%60) + " minutes" );
 
-for(var i=0;i<profile.pomodoros;i++)
-	if(i < 15)
-		$('.tomato-row').append('<img src="assets/img/tomato-svg.svg" alt="tomato-icon">');
 
+for(var i=0;i<Math.trunc(profile.pomodoros/4);i++)
+	if(i < 16)
+		$('.pomodori').append('<img src="assets/img/tomato-svg.svg" alt="tomato-icon">');
 $('#workTime').attr('placeholder',profile.workTime);
 $('#shortTime').attr('placeholder',profile.shortTime);
 $('#longTime').attr('placeholder',profile.longTime);
@@ -164,30 +164,36 @@ var updateOnBreak = function(){
 			secondaryClock.text( toH(s) + " hours " + (toM(s)%60) + " minutes" );
 			profile.isBreak = false;
 			profile.pomodoros++;
-			if(profile.pomodoros < 16)
-				$('.tomato-row').append('<img src="assets/img/tomato-svg.svg" alt="tomato-icon">');
 			createCookie('pomodoros',profile.pomodoros,1);
 			createCookie('elapsed',profile.elapsed,1);
 }
 
 window.addEventListener('finished', function(e){
 
-		audioElement.play();
-
 		if(profile.shortBreak < 3 && profile.isBreak){
 			$('.background').css('background-color', '#64a244');
+			audioElement.setAttribute('src', 'assets/sounds/breakDone.wav');
+			audioElement.play();
 			profile.shortBreak++;
 			time = profile.shortTime * 60;
 			updateOnBreak();
 		}
 		else if(profile.shortBreak === 3 && profile.isBreak){
 			$('.background').css('background-color', '#017e95');
+			if(Math.trunc(profile.pomodoros/4) < 16)
+			{
+				audioElement.setAttribute('src', 'assets/sounds/pomodoriDone.wav');
+			audioElement.play();
+				$('.pomodori').append('<img src="assets/img/tomato-svg.svg" alt="tomato-icon">');
+			}
 			time = profile.longTime * 60;
 			profile.shortBreak = 0;
 			updateOnBreak();
 		}
 		else {
 			$('.background').css('background-color', '#8b0000');
+			audioElement.setAttribute('src', 'assets/sounds/doneSound.mp3');
+			audioElement.play();
 			time = profile.workTime * 60;
 			profile.isBreak = true;
 		}
@@ -217,7 +223,7 @@ $('#reset').click(function(){
 	profile.pomodoros = 0;
 	var reset = confirm('Do you really want to reset your stats?')
 	if(reset){
-		$('.tomato-row').text("");
+		$('.pomodori').text("");
 		$('#done-time').text( '0 hours 0 minutes' );
 		eraseCookie('pomodoros');
 		eraseCookie('elapsed');
