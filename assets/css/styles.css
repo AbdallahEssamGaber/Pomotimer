@@ -4,7 +4,7 @@
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
 	color: #ffffff;
-	background: transparent;   
+	/* background: transparent;    */
 }
 .fa {
 	border-radius: 50%;
@@ -17,10 +17,11 @@ body,html {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
-	background-image: url("../img/school-bg.jpg");
+	/* background-image: url("../img/school-bg.jpg"); */
+	background-color: #8b0000;
 }
 .background {
-	background: url("../img/school-bg.jpg");
+	/* background: url("../img/school-bg.jpg"); */
 	display: block;
 	height: calc(100% + 40px);
 	width: calc(100% + 40px);
@@ -52,7 +53,7 @@ body,html {
 	position: absolute;
 	width: 450px;
 	height: 450px;
-	border-radius: 50%;
+	border-radius: 47%;
 	top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -68,7 +69,7 @@ body,html {
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-	box-shadow: 0px 0px 15px 2px #6C7A89;
+	/* box-shadow: 0px 0px 15px 2px #6C7A89; */
 }
 p {
 	width: 100%;
@@ -202,8 +203,8 @@ form span {
 	margin-top: 10px;
 	width: 260px;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -324,7 +325,7 @@ a {
 		margin-top: 200px;
 	}
 	.work-sentence {
-		margin-top: 25px; 
+		margin-top: 25px;
 	}
 	#done-time {
 		margin-bottom: 25px;
