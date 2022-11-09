@@ -230,4 +230,13 @@ $('#reset').click(function(){
 	}
 });
 
+
+window.addEventListener('beforeunload', function (e) {
+	if (!mainTimer.stopped) {
+		e.preventDefault();
+		e.returnValue = '';
+	}
+});
+
+
 });
